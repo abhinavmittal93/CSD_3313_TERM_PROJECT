@@ -1,0 +1,46 @@
+<%- include('header.ejs') %>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#courses_menu_item').addClass('active');
+    $('.table').DataTable();
+});
+
+
+</script>
+
+<h1>Courses</h1>
+<hr>
+<div class="clearfix">
+    <a href="" class="btn btn-primary">ADD NEW COURSE</a>
+</div>
+<br>
+<div>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a class="btn btn-primary" href="">EDIT</a>
+                <a class="btn btn-danger" href="">DELETE</a>
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+
+</div>
+<%- include('footer.ejs') %>

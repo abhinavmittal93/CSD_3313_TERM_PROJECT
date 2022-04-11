@@ -1,0 +1,70 @@
+{% include 'header.html' %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/contact.css') }}">
+<style>
+form{
+    width: 60%;
+    padding: 30px;
+    margin: 20px 25%;
+    background: whitesmoke;
+    margin-left:200px;
+    margin-top:70px;
+}
+form:hover{
+    box-shadow: 5px 10px 20px rgb(133, 131, 131);
+}
+form label{
+    display: inline-block;
+    width: 290px;
+    padding: 30px  20px;
+    margin-left:30px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    background-image: url("/static/img/study1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+
+</style>
+    <br>
+
+    <h2 style="text-align: center; color:#e69500;text-decoration: underline;"> Admission Form</h2>
+
+
+    <form action="{{ url_for('apply_course') }}" method="POST">
+        <label class="mandatory" for="name" ><b>Student Name</b></label><input type="text" name="stname" class="input"required> <br>
+        <label class="mandatory" for="name"><b>Father's Name</b></label><input type="text" name="fname" class="input"> <br>
+        <label class="mandatory" for="name"><b>Mother's Name</b></label><input type="text" name="mname" class="input"> <br>
+        <label class="mandatory" for="email"><b>Email</b></label><input type="email" name="email" class="input" required> <br>
+        <label class="mandatory" for="Phone"><b>Phone Number</b></label><input type="tel" name="phone"  class="input"required> <br>
+        <label class="mandatory" for="gender"><b>Gender</b></label>
+        <select name="gender" id="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select> <br>
+        <label class="mandatory" for="degree"><b>Highest degree</b></label>
+        <select name="hdegree" id="hdegree" class="input" required>
+            <option value="matric">Sen.Sec.</option>
+            <option value="graduation">Bachelor Degree</option>
+            <option value="diploma">Diploma</option>
+        </select> <br>
+        <label class="mandatory" for="apply-for"><b>Apply For</b></label>
+        <select name="course_id" id="course_id" required>
+        {% for keys in course_list %}
+            <option value="{{keys._id}}">{{keys.course_category_details.category_name}} - {{keys.course_name}}</option>
+        {% endfor %}
+        </select> <br><br>
+        <button type="submit" class="btn" >Apply</button>
+    </form>
+
+<script>
+    $("#course_id").val('{{selected_course_id}}');
+</script>
+{% include 'footer.html' %}

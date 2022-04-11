@@ -1,0 +1,17 @@
+<html> 
+    <head>
+<tit>Employee list</tit>
+    </head>
+    <body >
+    <h3> list </h3>
+    <section data-position='information'>
+        <% for ( var i=0; i<allthelist.length; i++) { %>
+            <%= alltheemp[i].fname %> &nbsp;
+            <%= alltheemp[i].email %> &nbsp;
+            <%= alltheemp[i].cnum %> &nbsp;
+            <%= alltheemp[i].subject %> &nbsp;
+            <%= alltheemp[i].message %> &nbsp;
+            <%= alltheemp[i].date %> &nbsp; <br >
+        <% } %>
+    </section>
+    </body>
