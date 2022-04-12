@@ -6,7 +6,7 @@ module.exports = {
         console.log(" CALLING ADMIN COURSES PAGE");
         Courses.find({}, function (err, results) {
             if (err) {
-                res.render('Response.ejs', { title: "Response", "message": "An error occurred. Please try again." });
+                return res.render('500.ejs', { title: "Response", "message": "An error occurred. Please try again." });
             };
             res.render('admin_courses.ejs', { title: "Courses", courses: results });
         });
@@ -33,7 +33,7 @@ module.exports = {
         Courses.find({ query }, function (err, results) {
             if (err) throw err;
             if (results == null) {
-                res.render('Response.ejs', { title: "Response", "message": "Course does not exists with code: " + course_code });
+                return res.render('500.ejs', { title: "Response", "message": "Course does not exists with code: " + course_code });
             } else {
                 console.log(results);
                 res.render('admin_course_details.ejs', { title: "Course Details", course_details: results });
@@ -46,7 +46,7 @@ module.exports = {
 
         var courseInfo = req.body;// its coming from form
 
-        var course_code = req.body.course_code;
+        //var course_code = req.body.course_code;
         var intakes_available = [];
         var is_co_op_available = 'False';
 
@@ -66,19 +66,9 @@ module.exports = {
             "intakes_available": intakes_available
         }
 
-        console.log('course_code: ' + course_code);
-
-        // var query = { 'course_code': course_code.toUpperCase() };
-        // Courses.find({ query }, function (err, results) {
-        //     if (err) throw err;
-        //     if(results != null) {
-        //         res.render('Response.ejs', { title: "Response", "message": "A course already exists with this code: " + course_code  });
-        //     }
-        // });
-
         Courses.create(courseInfo, function (err, result) {
             if (err) {
-                res.render('Response.ejs', { title: "Response", "message": "An error occurred. Please try again." });
+                return res.render('500.ejs', { title: "Response", "message": "An error occurred. Please try again." });
             };
             res.redirect('/courses')
         });
@@ -114,7 +104,7 @@ module.exports = {
 
         Courses.updateOne(courseInfo, function (err, result) {
             if (err) {
-                res.render('Response.ejs', { title: "Response", "message": "An error occurred. Please try again." });
+                return res.render('500.ejs', { title: "Response", "message": "An error occurred. Please try again." });
             };
             res.redirect('/courses')
         });
@@ -129,7 +119,7 @@ module.exports = {
 
         Courses.deleteOne(courseInfo, function (err, result) {
             if (err) {
-                res.render('Response.ejs', { title: "Response", "message": "An error occurred. Please try again." });
+                return res.render('500.ejs', { title: "Response", "message": "An error occurred. Please try again." });
             };
             res.redirect('/courses')
         });

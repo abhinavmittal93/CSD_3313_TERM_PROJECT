@@ -1,4 +1,4 @@
-{% include 'header.html' %}
+<%- include('header.ejs') %>
 
 <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
 
@@ -154,6 +154,7 @@
 <div>
     <h1>500</h1>
   <h2>Unexpected Error <b>:(</b></h2>
+  <h2> <%=message %>  </h2>
   <div class="gears">
     <div class="gear one">
       <div class="bar"></div>
@@ -183,4 +184,4 @@
 </script>
 
 
-{% include 'footer.html' %}
+<%- include('footer.ejs') %>

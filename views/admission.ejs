@@ -1,5 +1,5 @@
-{% include 'header.html' %}
-<link rel="stylesheet" href="{{ url_for('static',filename='styles/contact.css') }}">
+<%- include('header.ejs') %>
+<link rel="stylesheet" href="/styles/contact.css">
 <style>
 form{
     width: 60%;
@@ -38,7 +38,7 @@ body {
     <h2 style="text-align: center; color:#e69500;text-decoration: underline;"> Admission Form</h2>
 
 
-    <form action="{{ url_for('apply_course') }}" method="POST">
+    <form action="/admissions/apply" method="POST">
         <label class="mandatory" for="name" ><b>Student Name</b></label><input type="text" name="stname" class="input"required> <br>
         <label class="mandatory" for="name"><b>Father's Name</b></label><input type="text" name="fname" class="input"> <br>
         <label class="mandatory" for="name"><b>Mother's Name</b></label><input type="text" name="mname" class="input"> <br>
@@ -57,14 +57,21 @@ body {
         </select> <br>
         <label class="mandatory" for="apply-for"><b>Apply For</b></label>
         <select name="course_id" id="course_id" required>
-        {% for keys in course_list %}
-            <option value="{{keys._id}}">{{keys.course_category_details.category_name}} - {{keys.course_name}}</option>
-        {% endfor %}
+            <% for ( var i=0; i<courses.length; i++) { %>
+                <option value="<%= courses[i]._id %>">
+                    <% if(courses[i].course_category == 'IT') { %>
+                            Information Technology
+                    <% } else if(courses[i].course_category == 'FIN') { %>
+                        Finance
+                    <% } else { %>
+                        Business
+                    <% }%> - <%= courses[i].course_name %></option>
+            <% } %>
         </select> <br><br>
         <button type="submit" class="btn" >Apply</button>
     </form>
 
 <script>
-    $("#course_id").val('{{selected_course_id}}');
+    // $("#course_id").val('{{selected_course_id}}');
 </script>
-{% include 'footer.html' %}
+<%- include('footer.ejs') %>

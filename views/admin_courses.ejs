@@ -13,7 +13,7 @@ $(document).ready(function() {
 <h1>Courses</h1>
 <hr>
 <div class="clearfix">
-    <a href="" class="btn btn-primary">ADD NEW COURSE</a>
+    <a href="/courses/details" class="btn btn-primary">ADD NEW COURSE</a>
 </div>
 <br>
 <div>
@@ -28,16 +28,25 @@ $(document).ready(function() {
         </tr>
         </thead>
         <tbody>
-        
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <a class="btn btn-primary" href="">EDIT</a>
-                <a class="btn btn-danger" href="">DELETE</a>
-            </td>
-        </tr>
+            <% for ( var i=0; i<courses.length; i++) { %>
+                <tr>
+                    <td><%= courses[i].course_code %></td>
+                    <td><%= courses[i].course_name %></td>
+                    <td>
+                        <% if(courses[i].course_category == 'IT') { %>
+                                Information Technology
+                        <% } else if(courses[i].course_category == 'FIN') { %>
+                            Finance
+                        <% } else { %>
+                            Business
+                        <% }%>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/courses/details/<%= courses[i].course_code %>">EDIT</a>
+                        <a class="btn btn-danger" href="/courses/delete/<%= courses[i].course_code %>">DELETE</a>
+                    </td>
+                </tr>
+            <% } %>
         
         </tbody>
     </table>
