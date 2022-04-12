@@ -1,4 +1,4 @@
-{% include 'header.html' %}
+<%- include('header.ejs') %>
 <style>
     body {
         background-color: #0d242e;
@@ -12,38 +12,26 @@
 </style>
 <div class="card" style="margin-top: 5%; background-color: #374b54; color:white;">
     <div class="card-body">
-        <h2 class="card-title">{{course_details.course_name}} - {{course_details.course_code}}</h2>
+        <h2 class="card-title"><%=course_details.course_name%> - <%=course_details.course_code%></h2>
         <div class="row">
             <span class="col-sm-8">
-                <label><strong>Course Duration:</strong></label>&nbsp;{{course_details.course_duration}} years
+                <label><strong>Course Duration:</strong></label>&nbsp;<%=course_details.course_duration%> years
                 <br>
                 <label><strong>Co-op Available:</strong></label>&nbsp;
-                {% block content %}
-                    {% if course_details.is_co_op_available %}
-                        Yes
-                    {% else %}
-                        No
-                    {% endif %}
-                {% endblock content %}
+                <% if(course_details.is_co_op_available) { %>
+                    Yes
+                <% } else { %>
+                    No
+                <% }%>
             </span>
             <span class="col-sm-4 pull-right">
-                <label><strong>Course Fees:</strong></label>&nbsp;${{course_details.course_fees}} (CAD)
-                <br>
-                <span style="display:flex; align-items: baseline;">
-                    <label><strong>Intakes:</strong></label>&nbsp;
-                    <ul>
-                        {% for my_item in course_details.intakes_available %}
-                            <li>{{ my_item }}</li>
-                        {% endfor %}
-                    </ul>
-                </span>
+                <label><strong>Course Fees:</strong></label>&nbsp;$<%=course_details.course_fees%> (CAD)
             </span>
         </div>
-        <p class="card-text" style="white-space: pre-wrap;">{{course_details.course_description | safe}}</p>
+        <p class="card-text" style="white-space: pre-wrap;"><%=course_details.course_description%></p>
         <br>
         <h2 class="heading">Admission Requirements</h2>
-        <p style="white-space: pre-wrap;">{{course_details.admission_requirements | safe}}</p>
-        <a href="{{ url_for('get_course_application_page', course_id=course_details._id) }}" class="btn btn-primary">Apply</a>
+        <p style="white-space: pre-wrap;"><%=course_details.admission_requirements%></p>
     </div>
 </div>
-{% include 'footer.html' %}
+<%- include('footer.ejs') %>

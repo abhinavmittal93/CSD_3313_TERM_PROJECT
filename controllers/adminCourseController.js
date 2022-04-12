@@ -41,6 +41,21 @@ module.exports = {
         });
 
     },
+    get_courses_view_page: function (req, res) {
+        console.log(" CALLING COURSES VIEW PAGE");
+        var course_code = req.params.course_code;
+        var query = { 'course_code': course_code.toUpperCase() };
+        Courses.find({ query }, function (err, results) {
+            if (err) throw err;
+            if (results == null) {
+                return res.render('500.ejs', { title: "Response", "message": "Course does not exists with code: " + course_code });
+            } else {
+                console.log(results);
+                res.render('course_view.ejs', { title: "Course Details", course_details: results[0] });
+            }
+        });
+
+    },
     save_courses_details: function (req, res) {
         console.log('Lets add a course');
 

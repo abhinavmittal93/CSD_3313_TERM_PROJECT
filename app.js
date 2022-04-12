@@ -61,6 +61,7 @@ app.post('/login', loginController.authenticate_admin);
 app.get('/courses/details', adminCourseController.get_admin_courses_details_page);
 app.get('/courses/details/:course_code', adminCourseController.get_admin_courses_edit_page);
 app.get('/courses/delete/:course_code', adminCourseController.delete_course);
+app.get('/courses/view/:course_code', adminCourseController.get_courses_view_page);
 app.post('/courses/details/save', adminCourseController.save_courses_details);
 app.post('/courses/details/update', adminCourseController.update_courses_details);
 app.get('/courses', adminCourseController.get_admin_courses_page);
