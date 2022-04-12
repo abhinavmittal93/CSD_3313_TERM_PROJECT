@@ -1,0 +1,88 @@
+<%- include('header.ejs') %>
+
+<script>
+$(document).ready(function() {
+    $('#courses_menu_item').addClass('active');
+
+    $('#course_code').keyup(function(){
+        var course_code = $("#course_code").val();
+        $("#course_code").val(course_code.toUpperCase());
+    });
+});
+
+
+</script>
+<div class="row rowborder">
+    <div class="col-sm-8">
+        <h2><%=title %></h2>
+    </div>
+    <div class="col-sm-4 text-right" style="margin-top:10px;">
+        <label><a href="/courses">Back to Courses</a></label>
+    </div>
+</div>
+
+<div>
+    <form action="/courses/details/save" method="POST">
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Course Code</label>
+            <input class="form-control" type="text" name="course_code" id="course_code" maxlength="5" value=""
+                   required/>
+        </div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Course Category</label>
+            <select class="form-control" name="course_category" id="course_category">
+                <option value="">Select</option>
+                <option value="IT">Information Technology</option>
+                <option value="BUS">Business</option>
+                <option value="FIN">Finance</option>
+            </select>
+        </div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Course Name</label>
+            <input class="form-control" type="text" name="course_name" value="" required/>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Course Details</label>
+            <textarea class="form-control" name="course_description" rows="5" required></textarea>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Admission Requirements</label>
+            <textarea class="form-control" name="admission_requirements" rows="5" required></textarea>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Course Duration</label>
+            <input class="form-control" type="number" name="course_duration" min="1" max="5" value="" required/>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Course Fees</label>
+            <input class="form-control" type="number" name="course_fees" min="1" value="" required/>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-10 form-group">
+            <label class="mandatory">Co-Op Available?</label>
+            <input type="checkbox" name="is_co_op_available" id="is_co_op_available" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+
+
+
+        <div>
+            <a class="btn btn-light" href="/courses">Cancel</a>
+            <button class="btn btn-primary" type="submit">Save Details</button>
+        </div>
+    </form>
+</div>
+
+<%- include('footer.ejs') %>
